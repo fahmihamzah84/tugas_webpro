@@ -9,7 +9,29 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-
+<script>
+    jQuery.ajax({
+      url: 'getUser.php',
+      type: 'GET',
+      dataType: 'json',
+      complete: function(xhr, textStatus) {
+        console.log(xhr, textStatus)
+  },
+  success: function(data, textStatus, xhr) {
+    $(".edit-profile__username").html(data.name)
+    $("#name").val(data.name)
+    $("#user-name").val(data.username)
+    $("#website").val(data.website)
+    $("#bio").val(data.bio)
+    $("#email").val(data.email)
+    $("#phone").val(data.phone_number)
+    $("#gender").val(data.gender)
+  },
+  error: function(xhr, textStatus, errorThrown) {
+    console.log(xhr, textStatus, errorThrown)
+  }
+});
+</script>
 <body>
     <nav class="navigation">
         <div class="navigation__column">
