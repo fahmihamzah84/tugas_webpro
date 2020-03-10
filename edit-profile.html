@@ -8,6 +8,8 @@
     <title>Edit Profile | Vietgram</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+
 </head>
 <script>
     jQuery.ajax({
@@ -130,5 +132,43 @@
         </div>
     </footer>
 </body>
+<script>
+$("#submit").click(function(e) {
+    e.preventDefault();
+    var name = $("#name").val();
+    var username = $("#user-name").val();
+    var website = $("#website").val();
+    var bio = $("#bio").val();
+    var email = $("#email").val();
+    var phone = $("#phone").val();
+    var gender = $("#gender").val();
+    jQuery.ajax({
+        url: 'profileEdit.php',
+        type: 'post',
+        data: {
+            name : name,
+            username : username,
+            website : website,
+            bio : bio,
+            email : email,
+            phone : phone,
+            gender : gender
+        },
+    })
+    .done(function(data) {
+        console.log(data);
+        if (data == "error") {
+            alert("Edit Profile error");
+        }else{
+            alert("Berhasil Edit Profile");
+        }
+        location.reload();
+    })
+    .fail(function() {
+        console.log("error");
+    });
+    
+});
+</script>
 
 </html>

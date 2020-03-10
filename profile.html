@@ -8,8 +8,41 @@
     <title>Profile | Vietgram</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
-</head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
+</head>
+<script>
+    jQuery.ajax({
+    url: 'getUser.php',
+    type: 'GET',
+    dataType: 'json',
+    complete: function(xhr, textStatus) {
+    console.log(xhr, textStatus)
+  },
+  success: function(data, textStatus, xhr) {
+    console.log(data)
+    $(".profile__username").html(data.username)
+    $(".profile__full-name").html(data.name)
+    $("#bio").html(data.bio)
+    $("#website").html(data.website)
+  },
+  error: function(xhr, textStatus, errorThrown) {
+    console.log(xhr, textStatus, errorThrown)
+  }
+});
+$.ajax({
+    url: 'getFeed.php',
+    type: 'GET',
+    dataType: 'json',
+})
+.done(function(data) {
+    $.each(data, function(i,result) {
+        console.log(result);        
+})
+.fail(function(xhr, textStatus, errorThrown) {
+    console.log(xhr);
+});
+</script>
 <body>
     <nav class="navigation">
         <div class="navigation__column">
