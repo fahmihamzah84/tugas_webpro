@@ -8,8 +8,6 @@
     <title>Edit Profile | Vietgram</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-
 </head>
 <script>
     jQuery.ajax({
@@ -73,34 +71,34 @@
                 </div>
                 <h4 class="edit-profile__username">serranoarevalo</h4>
             </header>
-            <form action="" class="edit-profile__form">
+            <form action="profileEdit.php" class="edit-profile__form" method="POST">
                 <div class="form__row">
                     <label for="full-name" class="form__label">Name:</label>
-                    <input id="full-name" type="text" class="form__input" />
+                    <input id="full-name" type="text" class="form__input" name="nama" />
                 </div>
                 <div class="form__row">
                     <label for="user-name" class="form__label">Username:</label>
-                    <input id="user-name" type="text" class="form__input" />
+                    <input id="user-name" type="text" class="form__input" name="uname"/>
                 </div>
                 <div class="form__row">
                     <label for="website" class="form__label">Website:</label>
-                    <input id="website" type="url" class="form__input" />
+                    <input id="website" type="url" class="form__input" name="website"/>
                 </div>
                 <div class="form__row">
                     <label for="bio" class="form__label">Bio:</label>
-                    <textarea id="bio"></textarea>
+                    <textarea id="bio" name="bio"></textarea>
                 </div>
                 <div class="form__row">
                     <label for="email" class="form__label">Email:</label>
-                    <input id="email" type="email" class="form__input" />
+                    <input id="email" type="email" class="form__input" name="email"/>
                 </div>
                 <div class="form__row">
                     <label for="phone" class="form__label">Phone Number:</label>
-                    <input id="phone" type="tel" class="form__input" />
+                    <input id="phone" type="tel" class="form__input" name="phone"/>
                 </div>
                 <div class="form__row">
                     <label for="gender" class="form__label">Gender:</label>
-                    <select id="gender">
+                    <select id="gender" name="gender">
                         <option value="male">Male</option>
                         <option value="female">Female</option>
                         <option value="cant">Can't remember</option>
@@ -132,43 +130,5 @@
         </div>
     </footer>
 </body>
-<script>
-$("#submit").click(function(e) {
-    e.preventDefault();
-    var name = $("#name").val();
-    var username = $("#user-name").val();
-    var website = $("#website").val();
-    var bio = $("#bio").val();
-    var email = $("#email").val();
-    var phone = $("#phone").val();
-    var gender = $("#gender").val();
-    jQuery.ajax({
-        url: 'profileEdit.php',
-        type: 'post',
-        data: {
-            name : name,
-            username : username,
-            website : website,
-            bio : bio,
-            email : email,
-            phone : phone,
-            gender : gender
-        },
-    })
-    .done(function(data) {
-        console.log(data);
-        if (data == "error") {
-            alert("Edit Profile error");
-        }else{
-            alert("Berhasil Edit Profile");
-        }
-        location.reload();
-    })
-    .fail(function() {
-        console.log("error");
-    });
-    
-});
-</script>
 
 </html>
