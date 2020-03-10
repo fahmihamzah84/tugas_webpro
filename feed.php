@@ -47,7 +47,7 @@ echo "Welcome ".$_SESSION['username'];
             </ul>
         </div>
     </nav>
-    <main id="feed">
+    <!-- <main id="feed">
         <div class="photo">
             <header class="photo__header">
                 <img src="images/avatar.jpg" class="photo__avatar" />
@@ -121,14 +121,14 @@ echo "Welcome ".$_SESSION['username'];
                         <span class="photo__comment-author">serranoarevalo</span> love this!
                     </li>
                 </ul>
-                <span class="photo__time-ago">2 hours ago</span>
+                <span class="photo__time-ago">2 hours ago</span>s
                 <div class="photo__add-comment-container">
                     <textarea name="comment" placeholder="Add a comment..."></textarea>
                     <i class="fa fa-ellipsis-h"></i>
                 </div>
             </div>
         </div>
-    </main>
+    </main> -->
     <footer class="footer">
         <div class="footer__column">
             <nav class="footer__nav">
@@ -150,6 +150,27 @@ echo "Welcome ".$_SESSION['username'];
             <span class="footer__copyright">© 2017 Vietgram</span>
         </div>
     </footer>
+    <script>
+        function cariCaption(){
+            var q = $("#search").val();
+            if (q === ""){
+                location.reload();
+        }else{
+            $.ajax({
+                url: 'photoSearch.php',
+                type: 'get',
+                dataType : 'json',
+                data: {
+                    search : q
+                },
+                beforeSend :function() {
+                    $("#feed").hide();
+                },
+                success : function() {
+                    $("#feed").show();
+                }
+            }
+    </script>
 </body>
 
 </html>
